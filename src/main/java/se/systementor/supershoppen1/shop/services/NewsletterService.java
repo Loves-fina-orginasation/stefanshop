@@ -16,4 +16,14 @@ public class NewsletterService {
         super();
         this.repository = repository;
     }
+
+    public List<Newsletter> getAll(){
+        var l = new ArrayList<Newsletter>();
+        for(Newsletter r : repository.findAll())
+        {
+            l.add(r);
+        }
+        return l;
+    }
+
 }
