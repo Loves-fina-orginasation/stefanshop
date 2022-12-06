@@ -15,10 +15,10 @@ public class NewsletterController {
         this.newsletterService = newsletterService;
     }
 
-    @GetMapping(path="/admin/newsletter")
+    @GetMapping(path="/admin/newsletters")
     String empty(Model model)
     {
-        model.addAttribute("newsletter", newsletterService.getAll());
-        return "admin/newsletter";
+        model.addAttribute("newsletters", newsletterService.getAll());
+        return "admin/newsletters";
     }
 }
