@@ -34,9 +34,14 @@ public class SubscriberService {
         subscriberRepository.save(Subscriber);
     }
 
-    public boolean checkUserToDb(Integer id) {
-        Optional<Subscriber> subscriber = subscriberRepository.findById(id);
-        return subscriber.orElse(null) != null;
+    public boolean checkIfEmailExists(String email) {
+        List<Subscriber> subscribers= getAll();
+        for(Subscriber sub : subscribers){
+            if(sub.getEmail().equalsIgnoreCase(email)){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

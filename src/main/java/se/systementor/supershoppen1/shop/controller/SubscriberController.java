@@ -34,9 +34,9 @@ public class SubscriberController {
     }
 
     @ResponseBody
-    @GetMapping(path="/checkUser/{id}")
-    public boolean checkUserToDb(@PathVariable Integer id){
-        return subscriberService.checkUserToDb(id);
+    @GetMapping(path="/checkEmail/{email}")
+    public boolean checkIfEmailExists(@PathVariable String email){
+        return subscriberService.checkIfEmailExists(email);
     }
 
 }
