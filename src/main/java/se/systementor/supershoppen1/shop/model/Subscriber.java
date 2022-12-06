@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -19,4 +20,8 @@ public class Subscriber {
     private Integer Id;
     @Column
     private String email;
+
+    @ManyToMany(mappedBy = "subscriber")
+    List<Newsletter> newsletter;
+
 }
