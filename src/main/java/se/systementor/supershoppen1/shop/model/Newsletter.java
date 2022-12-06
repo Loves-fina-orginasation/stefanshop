@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,6 +37,6 @@ public class Newsletter {
             name = "newsletter_subscribers",
             joinColumns = @JoinColumn(name = "newsletter_id"),
             inverseJoinColumns = @JoinColumn(name = "subscriber_id"))
-    Set<Subscriber> subscriber;
+    List<Subscriber> subscriber;
 
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -22,6 +22,6 @@ public class Subscriber {
     private String email;
 
     @ManyToMany(mappedBy = "subscriber")
-    Set<Newsletter> newsletter;
+    List<Newsletter> newsletter;
 
 }
