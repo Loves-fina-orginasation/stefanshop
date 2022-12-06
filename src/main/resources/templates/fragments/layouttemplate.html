@@ -154,8 +154,10 @@
                         Products</a></li>
                 <li sec:authorize="hasRole('ADMIN')">
                     <a href="/admin/categories">
-
                         Categories</a></li>
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a href="/admin/newsletters">
+                        Newsletters</a></li>
             </ul>
             <!-- /NAV -->
         </div>
