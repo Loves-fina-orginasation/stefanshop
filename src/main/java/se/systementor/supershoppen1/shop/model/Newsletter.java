@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,4 +31,12 @@ public class Newsletter {
     @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
     private Date date;
+
+    @ManyToMany
+    @JoinTable(
+            name = "newsletter_subscribers",
+            joinColumns = @JoinColumn(name = "newsletter_id"),
+            inverseJoinColumns = @JoinColumn(name = "subscriber_id"))
+    Set<Subscriber> subscriber;
+
 }
