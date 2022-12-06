@@ -27,7 +27,17 @@ public class Newsletter {
     @Column
     private String message;
 
-    @Column
+    /*@Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
+    private String date = formatter.format(d);
+     */
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date date;
+
+    @PrePersist
+    private void onCreate() {
+        date = new Date();
+    }
 }
