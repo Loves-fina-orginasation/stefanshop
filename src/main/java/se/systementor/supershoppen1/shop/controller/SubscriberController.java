@@ -2,10 +2,7 @@ package se.systementor.supershoppen1.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import se.systementor.supershoppen1.shop.model.Subscriber;
 import se.systementor.supershoppen1.shop.services.SubscriberService;
 
@@ -36,8 +33,9 @@ public class SubscriberController {
         subscriberService.save(Subscriber);
     }
 
-    @GetMapping(path="/checkUser")
-    public boolean checkUserToDb(Integer id){
+    @ResponseBody
+    @GetMapping(path="/checkUser/{id}")
+    public boolean checkUserToDb(@PathVariable Integer id){
         return subscriberService.checkUserToDb(id);
     }
 
