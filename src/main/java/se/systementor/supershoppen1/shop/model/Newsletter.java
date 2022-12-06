@@ -1,6 +1,5 @@
 package se.systementor.supershoppen1.shop.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +27,18 @@ public class Newsletter {
     @Column
     private String message;
 
-    @Column
+    /*@Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
+    private String date = formatter.format(d);
+     */
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date date;
+    @PrePersist
+    private void onCreate() {
+        date = new Date();
+    }
 
     @ManyToMany
     @JoinTable(
@@ -38,5 +46,4 @@ public class Newsletter {
             joinColumns = @JoinColumn(name = "newsletter_id"),
             inverseJoinColumns = @JoinColumn(name = "subscriber_id"))
     List<Subscriber> subscriber;
-
 }

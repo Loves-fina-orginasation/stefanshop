@@ -3,6 +3,7 @@ package se.systementor.supershoppen1.shop.services;
 import org.springframework.stereotype.Service;
 import se.systementor.supershoppen1.shop.model.Newsletter;
 import se.systementor.supershoppen1.shop.model.NewsletterRepository;
+import se.systementor.supershoppen1.shop.model.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,5 +26,7 @@ public class NewsletterService {
         }
         return l;
     }
-
+    public void sendNewsletter(Newsletter Newsletter) {
+        repository.save(Newsletter);
+    }
 }
