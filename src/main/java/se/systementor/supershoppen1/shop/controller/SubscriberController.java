@@ -36,4 +36,9 @@ public class SubscriberController {
         subscriberService.save(Subscriber);
     }
 
+    @GetMapping(path="/checkUser")
+    public boolean checkUserToDb(Integer id){
+        return subscriberService.checkUserToDb(id);
+    }
+
 }

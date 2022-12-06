@@ -2,6 +2,7 @@ package se.systementor.supershoppen1.shop.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import se.systementor.supershoppen1.shop.model.Subscriber;
@@ -31,6 +32,11 @@ public class SubscriberService {
 
     public void save(Subscriber Subscriber) {
         subscriberRepository.save(Subscriber);
+    }
+
+    public boolean checkUserToDb(Integer id) {
+        Optional<Subscriber> subscriber = subscriberRepository.findById(id);
+        return subscriber.orElse(null) != null;
     }
 }
 
