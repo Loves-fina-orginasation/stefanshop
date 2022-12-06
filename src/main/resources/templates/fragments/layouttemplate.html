@@ -184,11 +184,28 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="newsletter">
-                    <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                    <form>
-                        <input class="input" type="email" placeholder="Enter Your Email">
-                        <button class="newsletter-btn" type="submit"><i class="fa fa-envelope"></i> Subscribe</button>
-                    </form>
+                    <!-- Checks if user is logged in and is signed up to newsletter-->
+                    <div sec:authorize="isAuthenticated()">
+                        <!--TODO: Change true in switch to isSignedUp()-->
+                        <div th:switch="true">
+                            <p th:case="true">Already signed up</p>
+                            <div th:case="false">
+                                <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+                                <form>
+                                    <input class="input" type="email" placeholder="Enter Your Email">
+                                    <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div sec:authorize="isAnonymous()">
+                        <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+                        <form>
+                            <input class="input" type="email" placeholder="Enter Your Email">
+                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+                        </form>
+                    </div>
+                    <!-- Checks if user is logged in and is signed up to newsletter-->
                     <script>
                         $('button[type="submit"]').click(function (event) {
                             event.preventDefault();
@@ -341,4 +358,3 @@
 @RenderSection("Scripts", false)
 </body>
 </html>
-    
