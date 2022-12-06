@@ -3,6 +3,7 @@ package se.systementor.supershoppen1.shop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import se.systementor.supershoppen1.shop.model.Subscriber;
 import se.systementor.supershoppen1.shop.services.SubscriberService;
@@ -29,7 +30,7 @@ public class SubscriberController {
         return subscriberService.getSubscriber(id);
     }
 
-    @GetMapping(path="/save")
+    @PostMapping(path="/save")
     public void save(Subscriber Subscriber) {
         subscriberService.save(Subscriber);
     }
