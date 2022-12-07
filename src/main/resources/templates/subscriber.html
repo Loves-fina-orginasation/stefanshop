@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layouttemplate :: layout (~{::body})}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>replace</title>
+</head>
+<body>
+<div class="container">
+    <h1>Products</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each=" subscriber : ${subscribers}">
+            <td th:text="${subscriber.id}"></td>
+            <td th:text="${subscriber.email}"></td>
+            <td>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+</body>
+</html>
