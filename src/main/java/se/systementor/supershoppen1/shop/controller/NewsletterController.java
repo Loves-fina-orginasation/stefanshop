@@ -3,9 +3,7 @@ package se.systementor.supershoppen1.shop.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import se.systementor.supershoppen1.shop.model.Newsletter;
 import se.systementor.supershoppen1.shop.services.NewsletterService;
 
@@ -25,8 +23,29 @@ public class NewsletterController {
         return "admin/newsletters";
     }
 
-    @PostMapping(path="/admin/newsletters/send")
-            public void sendNewsletter(@RequestBody Newsletter newNewsletter) {
+    /*@PostMapping(path="/admin/newsletters/send")
+    public void sendNewsletter(@RequestBody Newsletter newNewsletter) {
             newsletterService.sendNewsletter(newNewsletter);
             }
+
+    /*@RequestMapping("/admin/send-newsletter")
+    public String sendNewsletter() {
+        return "/admin/send-newsletter";
+            }
+
+     */
+    @GetMapping("/admin/send-newsletter")
+    public String newNewsletter(Model model) {
+        Newsletter newsletter = new Newsletter();
+        model.addAttribute("newsletter", newsletter);
+
+        return "admin/send-newsletter";
+    }
+
+    @PostMapping("/admin/newsletters")
+    public String sendNewsletter(@ModelAttribute("newsletter") Newsletter newsletter, Model model) {
+        newsletterService.sendNewsletter(newsletter);
+        model.addAttribute("newsletters", newsletterService.getAll());
+        return "admin/newsletters";
+    }
 }
