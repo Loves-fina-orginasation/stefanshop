@@ -33,9 +33,18 @@ public class SubscriberController {
         return subscriberService.getSubscriber(id);
     }
 
-    @PostMapping(path="/save")
-    public void saveEmail(@ModelAttribute Subscriber subscriber, Model model) {
-        model.addAttribute("saved");
+/*    @RequestMapping(value = { "/save" }, method = RequestMethod.GET)
+    public String showSubscriber(Model model) {
+        Subscriber subscriber = new Subscriber();
+        model.addAttribute("subscriber", subscriber);
+        return "save";
+    }*/
+
+    @RequestMapping(value="save", method = RequestMethod.POST)
+    public void saveEmail(@RequestParam(name = "subtest") String subtest) {
+        System.out.println("TEST LARA");
+        Subscriber subscriber = new Subscriber();
+        subscriber.setEmail(subtest);
         subscriberService.save(subscriber);
     }
 

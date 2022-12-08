@@ -18,11 +18,12 @@ public class HomeController {
         this.productService = productService;
     }    
 
-    @GetMapping(path="/")
+   @GetMapping(path="/")
     String empty(Model model)
     {
         return "home";
     }
+
 
     @GetMapping(path="/test2")
     List<Product> getAll(){
