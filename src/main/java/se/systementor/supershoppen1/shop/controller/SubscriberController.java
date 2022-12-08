@@ -2,9 +2,7 @@ package se.systementor.supershoppen1.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import se.systementor.supershoppen1.shop.model.Subscriber;
 import se.systementor.supershoppen1.shop.services.SubscriberService;
 
@@ -20,23 +18,18 @@ public class SubscriberController {
         this.subscriberService = SubscriberService;
     }
 
-
-    @GetMapping(path="/getAll")
-    public ModelAndView getAll(){
-        ModelAndView mav = new ModelAndView("subscriber");
-        mav.addObject("subscribers", subscriberService.getAll());
-        return mav;
-    }
-
     @GetMapping(path="/get/{id}")
     public Subscriber getSubscriber(@PathVariable Integer id){
         return subscriberService.getSubscriber(id);
     }
 
-    @PostMapping(path="/save")
-    public void saveEmail(@ModelAttribute Subscriber subscriber, Model model) {
-        model.addAttribute("saved");
+
+    @RequestMapping(value="/save", method = RequestMethod.POST)
+    public String saveEmail(@RequestParam(name = "addingsub") String email) {
+        Subscriber subscriber = new Subscriber();
+        subscriber.setEmail(email);
         subscriberService.save(subscriber);
+        return "redirect:/";
     }
 
     @ResponseBody
