@@ -180,36 +180,18 @@
 </div>
 <!-- /SECTION -->
 <!-- NEWSLETTER -->
-<div id="newsletter" class="section">
+<div id="newsletter" class="section" th:unless="${hideSubscription}">
     <!-- container -->
     <div class="container">
         <!-- row -->
         <div class="row">
             <div class="col-md-12">
                 <div class="newsletter">
-                    <!-- Checks if user is logged in and is signed up to newsletter-->
-                    <div sec:authorize="isAuthenticated()">
-                        <!--TODO: Change true in switch to isSignedUp()-->
-                        <div th:switch="true">
-                            <p th:case="true">Already signed up</p>
-                            <div th:case="false">
-                                <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                                <form>
-                                    <input class="input" type="email" placeholder="Enter Your Email">
-                                    <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div sec:authorize="isAnonymous()">
-                        <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                        <form>
-                            <form th:action="@{/save}" th:object="${saved}" method="post">
-
-                            input class="input" type="email" placeholder="Enter Your Email">
-                            <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe </button>
-                        </form>
-                    <!-- Checks if user is logged in and is signed up to newsletter-->
+                    <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+                    <form>
+                        <input class="input" type="email" placeholder="Enter Your Email">
+                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+                    </form>
                     <script>
                         $('button[type="submit"]').click(function (event) {
                             event.preventDefault();
