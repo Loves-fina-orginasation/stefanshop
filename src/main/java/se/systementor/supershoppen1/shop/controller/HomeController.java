@@ -22,6 +22,7 @@ public class HomeController {
     String empty(Model model)
     {
         return "home";
+
     }
 
 

@@ -154,7 +154,6 @@
                         Products</a></li>
                 <li sec:authorize="hasRole('ADMIN')">
                     <a href="/admin/categories">
-
                         Categories</a></li>
                 <li sec:authorize="hasRole('ADMIN')">
                     <a href="/admin/newsletter">
@@ -192,7 +191,7 @@
                 <div class="newsletter">
                     <p>Sign Up for the <strong>NEWSLETTER</strong></p>
                         <form th:action="@{/subscriber/save}" method="post">
-                            <input name ="subtest" class="input" type="email" placeholder="Enter Your Email">
+                            <input name ="subAdd" class="input" type="email" placeholder="Enter Your Email">
                             <button class="newsletter-btn" type="submit"><i class="fa fa-envelope"></i> Subscribe </button>
                     </form>
                     <ul class="newsletter-follow">
