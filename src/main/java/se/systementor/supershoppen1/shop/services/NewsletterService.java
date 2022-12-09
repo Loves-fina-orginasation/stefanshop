@@ -29,4 +29,8 @@ public class NewsletterService {
     public void sendNewsletter(Newsletter Newsletter) {
         repository.save(Newsletter);
     }
+
+    public Newsletter getLastNewsletter() {
+        return getAll().get(getAll().size()-1);
+    }
 }
