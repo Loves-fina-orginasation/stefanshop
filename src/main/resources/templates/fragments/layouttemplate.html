@@ -157,12 +157,11 @@
                         Categories</a></li>
                 <li sec:authorize="hasRole('ADMIN')">
                     <a href="/admin/newsletter">
-                        Newsletters
-                    </a>
-                </li>
+                        Newsletters</a></li>
                <li sec:authorize="hasRole('ADMIN')">
                     <a href="/subscriber/getAll">
                         Subscribers</a></li>
+
             </ul>
             <!-- /NAV -->
         </div>
@@ -190,8 +189,10 @@
             <div class="col-md-12">
                 <div class="newsletter">
                     <p>Sign Up for the <strong>NEWSLETTER</strong></p>
+
+
                         <form th:action="@{/subscriber/save}" method="post">
-                            <input name ="addingsub" class="input" type="email" placeholder="Enter Your Email">
+                            <input name ="addingsub" class="input" type="email" placeholder="Enter Your Email" required/>
                             <button class="newsletter-btn" type="submit"><i class="fa fa-envelope"></i> Subscribe </button>
                     </form>
                     <ul class="newsletter-follow">
