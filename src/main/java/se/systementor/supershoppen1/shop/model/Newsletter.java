@@ -27,10 +27,8 @@ public class Newsletter {
     @Column
     private String message;
 
-    /*@Column
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
-    private String date = formatter.format(d);
-     */
+    @Column
+    private Boolean sent;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
