@@ -7,33 +7,44 @@
     <title>replace</title>
 </head>
 <body>
-<div class="container">
-    <h1>Newsletters</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Subject</th>
-            <th scope="col">Message</th>
-            <th scope="col">Date</th>
-        </tr>
-        </thead>id
-        <tbody>
-        <tr th:each="newsletter : ${newsletters}">
-            <td th:text="${newsletter.getId()}"></td>
-            <td th:text="${newsletter.getSubject()}"></td>
-            <td th:text="${newsletter.getMessage()}"></td>
-            <td th:text="${newsletter.getDate()}"></td>
-            <td>
-                <a th:href="@{/admin/newsletter/edit(id=${newsletter.getId()})}">Edit</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/admin/send-newsletter}" class="btn btn-primary btn-lg" role="button">Add new</a>
-</div>
+    <div class="container">
+        <h1>Newsletters</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>id
+            <tbody>
+                <tr th:each="newsletter : ${newsletters}">
+                    <td th:text="${newsletter.getId()}"></td>
+                    <td th:text="${newsletter.getSubject()}"></td>
+                    <td th:text="${newsletter.getMessage()}"></td>
+                    <td th:text="${#dates.format(newsletter.getDate(),'yyyy-MM-dd')}"></td>
+                    <span th:if="${newsletter.getSent()} == false">
+                        <td>
+                            <a th:href="@{/admin/edit-newsletter}">Edit</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/admin/newsletter/edit(id=${newsletter.getId()})}">Delete</a>
+                        </td>
+                    </span>
+                </tr>
+            </tbody>
+        </table>
+        <div th:switch="${newsletters[#lists.size(newsletters) - 1].sent}">
+
+            <a th:case="true" th:href="@{/admin/send-newsletter}" class="btn btn-primary btn-lg" role="button">Add new</a>
 
 
+            <a th:case="false" th:href="@{/admin/edit-newsletter}" class="btn btn-primary btn-lg" role="button">Edit last draft</a>
 
+        </div> 
+    </div>
 </body>
 </html>
