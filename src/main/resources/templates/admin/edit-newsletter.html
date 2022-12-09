@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layouttemplate :: layout (~{::body})}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>replace</title>
+</head>
+<body>
+<div class="container">
+    <h1>Edit newsletter</h1>
+    <form action="#" th:action="@{/admin/newsletters}" method="post" th:object="${newsletter}">
+        <label>Subject:</label>
+        <input type="text" id="blog-id" name="subject" th:value="${subject}" /><br/>
+        <label>Message:</label>
+        <textarea rows="15" cols="100" name="message" th:value="${message}" th:text="${message}"></textarea>
+        <br/>
+
+        <button name="send-newsletter" type="submit" class="btn btn-primary btn-lg">Send newsletter</button>
+        <button name="save-newsletter" type="submit" class="btn btn-primary btn-lg">Save draft</button>
+    </form>
+</div>
+</body>
+</html>
