@@ -38,14 +38,49 @@ public class NewsletterController {
     public String newNewsletter(Model model) {
         Newsletter newsletter = new Newsletter();
         model.addAttribute("newsletter", newsletter);
-
         return "admin/send-newsletter";
     }
 
+    @GetMapping("/admin/edit-newsletter")
+    public String editNewsletter(Model model) {
+        Newsletter newsletter = new Newsletter();
+        Newsletter tempNewsletter = getLastNewsletter();
+        model.addAttribute("newsletter", newsletter);
+        model.addAttribute("message",tempNewsletter.getMessage());
+        model.addAttribute("subject",tempNewsletter.getSubject());
+
+        return "admin/edit-newsletter";
+    }
+
+    public Newsletter getLastNewsletter(){
+        return newsletterService.getLastNewsletter();
+    }
+
+
+
     @PostMapping("/admin/newsletters")
-    public String sendNewsletter(@ModelAttribute("newsletter") Newsletter newsletter, Model model) {
-        newsletterService.sendNewsletter(newsletter);
+    public String sendNewsletter(@ModelAttribute("newsletter") Newsletter newsletter, Model model,
+                                 @RequestParam(value = "send-newsletter", required = false) String sendButton,
+                                 @RequestParam(value = "save-newsletter", required = false) String saveButton,
+                                 @RequestParam(value = "subject", required = false) String subject,
+                                 @RequestParam(value = "message", required = false) String message){
+
         model.addAttribute("newsletters", newsletterService.getAll());
+        Newsletter test = getLastNewsletter().getSent() ? newsletter: getLastNewsletter();
+
+        if (saveButton != null) {
+            saveNewsletter(test, subject, message, false);
+        } else if (sendButton != null) {
+                saveNewsletter(test, subject, message, true);
+        }
         return "admin/newsletters";
     }
+
+    private void saveNewsletter(Newsletter newsletter, String subject, String message, boolean bol) {
+        newsletter.setSent(bol);
+        newsletter.setSubject(subject);
+        newsletter.setMessage(message);
+        newsletterService.sendNewsletter(newsletter);
+    }
+
 }
