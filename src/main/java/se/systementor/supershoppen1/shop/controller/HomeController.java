@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     public HomeController(ProductService productService) {
         this.productService = productService;
-    }    
+    }
 
     @GetMapping(path="/")
     String empty(Model model)
@@ -28,6 +28,4 @@ public class HomeController {
     List<Product> getAll(){
         return productService.getAll();
     }
-
-
 }
