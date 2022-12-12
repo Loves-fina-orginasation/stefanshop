@@ -21,28 +21,34 @@ public class SubscriberController {
     }
 
 
-    @GetMapping(path="/getAll")
-    public ModelAndView getAll(){
+    @GetMapping(path = "/getAll")
+    public ModelAndView getAll() {
         ModelAndView mav = new ModelAndView("subscriber");
         mav.addObject("subscribers", subscriberService.getAll());
         return mav;
     }
 
-    @GetMapping(path="/get/{id}")
-    public Subscriber getSubscriber(@PathVariable Integer id){
+    @GetMapping(path = "/get/{id}")
+    public Subscriber getSubscriber(@PathVariable Integer id) {
         return subscriberService.getSubscriber(id);
     }
 
-    @PostMapping(path="/save")
+    @PostMapping(path = "/save")
     public void saveEmail(@ModelAttribute Subscriber subscriber, Model model) {
         model.addAttribute("saved");
         subscriberService.save(subscriber);
     }
 
     @ResponseBody
-    @GetMapping(path="/checkEmail/{email}")
-    public boolean checkIfEmailExists(@PathVariable String email){
+    @GetMapping(path = "/checkEmail/{email}")
+    public boolean checkIfEmailExists(@PathVariable String email) {
         return subscriberService.checkIfEmailExists(email);
     }
+
+    @GetMapping(path = "/getByNewsletter/{id}")
+    public List<String> getSubscriberByNewsletter(@PathVariable Integer id) {
+        return subscriberService.getSubscribersByNewsletter(id);
+    }
+
 
 }
