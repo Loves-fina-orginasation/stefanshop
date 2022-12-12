@@ -2,7 +2,9 @@ package se.systementor.supershoppen1.shop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.systementor.supershoppen1.shop.model.Newsletter;
 import se.systementor.supershoppen1.shop.model.Subscriber;
 import se.systementor.supershoppen1.shop.services.SubscriberService;
 
@@ -27,15 +29,16 @@ public class SubscriberController {
     @RequestMapping(value="/save", method = RequestMethod.POST)
     public String saveEmail(@RequestParam(name = "addingsub") String email) {
         Subscriber subscriber = new Subscriber();
-        subscriber.setEmail(email);
-        subscriberService.save(subscriber);
+        if(checkIfEmailExists(email)){
+            return "redirect:/";
+        }else{
+            subscriber.setEmail(email);
+            subscriberService.save(subscriber);
+        }
         return "redirect:/";
     }
 
-    @ResponseBody
-    @GetMapping(path="/checkEmail/{email}")
-    public boolean checkIfEmailExists(@PathVariable String email){
+    public boolean checkIfEmailExists(String email){
         return subscriberService.checkIfEmailExists(email);
     }
-
 }
