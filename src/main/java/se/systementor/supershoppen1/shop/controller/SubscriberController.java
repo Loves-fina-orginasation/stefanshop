@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.systementor.supershoppen1.shop.model.Newsletter;
+import org.springframework.web.servlet.ModelAndView;
 import se.systementor.supershoppen1.shop.model.Subscriber;
 import se.systementor.supershoppen1.shop.services.SubscriberService;
 
@@ -20,8 +21,8 @@ public class SubscriberController {
         this.subscriberService = SubscriberService;
     }
 
-    @GetMapping(path="/get/{id}")
-    public Subscriber getSubscriber(@PathVariable Integer id){
+    @GetMapping(path = "/get/{id}")
+    public Subscriber getSubscriber(@PathVariable Integer id) {
         return subscriberService.getSubscriber(id);
     }
 
@@ -46,4 +47,17 @@ public class SubscriberController {
     public boolean checkIfEmailExists(String email){
         return subscriberService.checkIfEmailExists(email);
     }
+
+    @ResponseBody
+    @GetMapping(path = "/checkEmail/{email}")
+    public boolean checkIfEmailExists(@PathVariable String email) {
+        return subscriberService.checkIfEmailExists(email);
+    }
+
+    @GetMapping(path = "/getByNewsletter/{id}")
+    public List<String> getSubscriberByNewsletter(@PathVariable Integer id) {
+        return subscriberService.getSubscribersByNewsletter(id);
+    }
+
+
 }
