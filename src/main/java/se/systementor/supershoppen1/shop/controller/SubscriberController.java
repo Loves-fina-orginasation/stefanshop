@@ -27,15 +27,20 @@ public class SubscriberController {
 
 
     @RequestMapping(value="/save", method = RequestMethod.POST)
-    public String saveEmail(@RequestParam(name = "addingsub") String email) {
-        Subscriber subscriber = new Subscriber();
-        if(checkIfEmailExists(email)){
-            return "redirect:/";
-        }else{
+    public String saveEmail(@ModelAttribute("Newsletter")Subscriber subscriber, Model model,
+                            @RequestParam(name = "addingsub") String email){
+
+        String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+        boolean exists = checkIfEmailExists(email);
+        if(exists){
+            model.addAttribute("checkEmail", exists);
+        }else if(email.matches(emailRegex)){
             subscriber.setEmail(email);
             subscriberService.save(subscriber);
+        }else{
+            model.addAttribute("checkEmail", exists);
         }
-        return "redirect:/";
+        return "home";
     }
 
     public boolean checkIfEmailExists(String email){
