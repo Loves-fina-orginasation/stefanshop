@@ -20,22 +20,9 @@ public class SubscriberController {
         this.subscriberService = SubscriberService;
     }
 
-
-    @GetMapping(path = "/getAll")
-    public ModelAndView getAll() {
-        ModelAndView mav = new ModelAndView("subscriber");
-        mav.addObject("subscribers", subscriberService.getAll());
-        return mav;
-    }
-
     @GetMapping(path = "/get/{id}")
     public Subscriber getSubscriber(@PathVariable Integer id) {
         return subscriberService.getSubscriber(id);
-    }
-
-    @PostMapping(path = "/save")
-    public void saveEmail(@ModelAttribute Subscriber subscriber, Model model) {
-        model.addAttribute("saved");
     }
 
 
