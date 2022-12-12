@@ -65,12 +65,18 @@ public class NewsletterController {
                                  @RequestParam(value = "subject", required = false) String subject,
                                  @RequestParam(value = "message", required = false) String message){
 
-        Newsletter test = getLastNewsletter().getSent() ? newsletter: getLastNewsletter();
+        Newsletter newNewsletter;
+
+        if(newsletterService.getAll().size() != 0){
+            newNewsletter = getLastNewsletter().getSent() ? newsletter: getLastNewsletter();
+        }else{
+            newNewsletter = new Newsletter();
+        }
 
         if (saveButton != null) {
-            saveNewsletter(test, subject, message, false);
+            saveNewsletter(newNewsletter, subject, message, false);
         } else if (sendButton != null) {
-                saveNewsletter(test, subject, message, true);
+                saveNewsletter(newNewsletter, subject, message, true);
         }
         model.addAttribute("newsletters", newsletterService.getAll());
         return "admin/newsletters";
