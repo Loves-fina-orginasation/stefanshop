@@ -37,13 +37,20 @@
                 </tr>
             </tbody>
         </table>
-        <div th:switch="${newsletters[#lists.size(newsletters) - 1].sent}">
 
-            <a th:case="true" th:href="@{/admin/send-newsletter}" class="btn btn-primary btn-lg" role="button">Add new</a>
+        <div th:if="${#lists.isEmpty(newsletters)}">
+            <a th:href="@{/admin/send-newsletter}" class="btn btn-primary btn-lg" role="button">Add new</a>
+        </div>
+        
+        <div th:unless="${#lists.isEmpty(newsletters)}" >
+        
+            <div th:switch="${newsletters[#lists.size(newsletters) - 1].sent}">
+
+                <a th:case="true" th:href="@{/admin/send-newsletter}" class="btn btn-primary btn-lg" role="button">Add new</a>
 
 
-            <a th:case="false" th:href="@{/admin/edit-newsletter}" class="btn btn-primary btn-lg" role="button">Edit last draft</a>
-
+                <a th:case="false" th:href="@{/admin/edit-newsletter}" class="btn btn-primary btn-lg" role="button">Edit last draft</a>
+            </div>
         </div> 
     </div>
 </body>
