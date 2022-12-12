@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import se.systementor.supershoppen1.shop.model.Newsletter;
-import org.springframework.web.servlet.ModelAndView;
 import se.systementor.supershoppen1.shop.model.Subscriber;
 import se.systementor.supershoppen1.shop.services.SubscriberService;
 
@@ -45,12 +43,6 @@ public class SubscriberController {
     }
 
     public boolean checkIfEmailExists(String email){
-        return subscriberService.checkIfEmailExists(email);
-    }
-
-    @ResponseBody
-    @GetMapping(path = "/checkEmail/{email}")
-    public boolean checkIfEmailExists(@PathVariable String email) {
         return subscriberService.checkIfEmailExists(email);
     }
 
