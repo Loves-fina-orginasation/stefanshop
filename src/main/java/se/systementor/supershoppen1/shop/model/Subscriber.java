@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "subscriber")
 public class Subscriber {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
     @Column
     private String email;
