@@ -30,8 +30,9 @@ public class SubscriberService {
         return subscriberRepository.findById(id).get();
     }
 
-    public void save(Subscriber Subscriber) {
-        subscriberRepository.save(Subscriber);
+    public void save(Subscriber subscriber) {
+       subscriberRepository.save(subscriber);
+
     }
 
     public boolean checkIfEmailExists(String email) {
