@@ -33,4 +33,8 @@ public class NewsletterService {
     public Newsletter getLastNewsletter() {
         return getAll().get(getAll().size()-1);
     }
+
+    public void deleteNewsletter(Integer id) {
+        repository.deleteById(id);
+    }
 }
