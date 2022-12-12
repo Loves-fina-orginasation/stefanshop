@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{fragments/layouttemplate :: layout (~{::body})}">
+      th:replace="~{fragments/layouttemplate :: layout (~{::body})}" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
     <title>replace</title>
@@ -28,10 +28,12 @@
                     <td th:text="${#dates.format(newsletter.getDate(),'yyyy-MM-dd')}"></td>
                     <span th:if="${newsletter.getSent()} == false">
                         <td>
-                            <a th:href="@{/admin/edit-newsletter}">Edit</a>
+                            <a th:href="@{/admin/edit-newsletter}" class="btn btn-danger">Edit</a>
                         </td>
                         <td>
-                            <a th:href="@{/admin/newsletter/edit(id=${newsletter.getId()})}">Delete</a>
+                            <form th:action="@{/admin/newsletters/delete/{id}(id=${newsletter.id})}" th:method="delete">
+                                <button class="btn btn-danger" type="submit"/>Delete</button>
+                            </form>
                         </td>
                     </span>
                 </tr>

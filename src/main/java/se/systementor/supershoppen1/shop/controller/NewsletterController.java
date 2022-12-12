@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.systementor.supershoppen1.shop.model.Newsletter;
+import se.systementor.supershoppen1.shop.model.Subscriber;
 import se.systementor.supershoppen1.shop.services.NewsletterService;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Controller
 public class NewsletterController {
@@ -87,6 +90,12 @@ public class NewsletterController {
         newsletter.setSubject(subject);
         newsletter.setMessage(message);
         newsletterService.sendNewsletter(newsletter);
+    }
+
+    @RequestMapping( value="/admin/newsletters/delete/{id}", method = RequestMethod.DELETE)
+    public String deleteNewsletter(@PathVariable Integer id) {
+        newsletterService.deleteNewsletter(id);
+        return "redirect:/admin/newsletters";
     }
 
 }
