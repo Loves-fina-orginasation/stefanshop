@@ -189,8 +189,13 @@
                 <div class="newsletter">
                     <p>Sign Up for the <strong>NEWSLETTER</strong></p>
 
-
-                        <form th:action="@{/subscriber/save}" method="post">
+                        <form th:action="@{/subscriber/save}" method="post" th:object="${Newsletter}">
+                            
+                            <div th:switch="${checkEmail}">
+                                <div th:case="true"> Email already exists </div>
+                                <div th:case="false"> You need to enter valid email </div>
+                            </div> 
+                            
                             <input name ="addingsub" class="input" type="email" placeholder="Enter Your Email" required/>
                             <button class="newsletter-btn" type="submit"><i class="fa fa-envelope"></i> Subscribe </button>
                     </form>
