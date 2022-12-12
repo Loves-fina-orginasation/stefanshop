@@ -36,7 +36,15 @@ public class SubscriberController {
     @PostMapping(path = "/save")
     public void saveEmail(@ModelAttribute Subscriber subscriber, Model model) {
         model.addAttribute("saved");
+    }
+
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveEmail(@RequestParam(name = "addingsub") String email) {
+        Subscriber subscriber = new Subscriber();
+        subscriber.setEmail(email);
         subscriberService.save(subscriber);
+        return "redirect:/";
     }
 
     @ResponseBody
