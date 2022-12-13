@@ -24,7 +24,7 @@ public class Newsletter {
     @Column
     private String subject;
 
-    @Column
+    @Column(length = 4000)
     private String message;
 
     @Column

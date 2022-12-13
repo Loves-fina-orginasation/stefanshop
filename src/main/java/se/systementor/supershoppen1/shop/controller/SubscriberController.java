@@ -37,10 +37,11 @@ public class SubscriberController {
             subscriber.setEmail(email);
             subscriberService.save(subscriber);
             model.addAttribute("checkEmail", "3");
+            model.addAttribute("hideSubscription", true);
         } else {
             model.addAttribute("checkEmail", "2");
         }
-        return "home";
+        return "/home";
     }
 
     public boolean checkIfEmailExists(String email) {
