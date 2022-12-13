@@ -48,10 +48,10 @@
         
             <div th:switch="${newsletters[#lists.size(newsletters) - 1].sent}">
 
-                <a th:case="true" th:href="@{/admin/send-newsletter}" class="btn btn-primary btn-lg" role="button">Add new</a>
+                <a th:case="true" th:href="@{/admin/send-newsletter}" class="btn btn-danger" role="button">Add new</a>
 
 
-                <a th:case="false" th:href="@{/admin/edit-newsletter}" class="btn btn-primary btn-lg" role="button">Edit last draft</a>
+                <a th:case="false" th:href="@{/admin/edit-newsletter}" class="btn btn-danger" role="button">Edit last draft</a>
             </div>
         </div> 
     </div>
