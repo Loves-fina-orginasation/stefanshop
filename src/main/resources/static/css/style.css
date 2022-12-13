@@ -123,6 +123,26 @@ ul, ol {
   width: 100%;
 }
 
+.newsletter-title{
+  color: #D10024;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.subject {
+  border: solid 1px #bbbbbb;
+  text-align: left;
+  width:650px;
+  margin-bottom: 10px;
+  padding:5px;
+}
+.message {
+  border: solid 1px #bbbbbb;
+  text-align: left;
+  width:650px;
+  margin-bottom: 5px;
+  padding:5px;
+}
 textarea.input {
   padding: 15px;
   min-height: 90px;

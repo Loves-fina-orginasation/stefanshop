@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       th:replace="~{fragments/layouttemplate :: layout (~{::body})}">
+      <link th:href="@{/css/style.css}" rel="stylesheet" />
 <head>
     <meta charset="UTF-8"/>
     <title>replace</title>
@@ -10,14 +11,14 @@
 <div class="container">
     <h1>New newsletter</h1>
     <form action="#" th:action="@{/admin/newsletters}" method="post" th:object="${newsletter}">
-        <label>Subject:</label>
-        <input type="text" id="blog-id" th:field="*{subject}" /><br/>
-        <label>Message:</label>
-        <textarea rows="15" cols="100" th:field="*{message}"></textarea>
+        <h5>Subject:</h5>
+        <input class="subject" type="text" placeholder="Write your subject here" id="blog-id" th:field="*{subject}" /><br/>
+        <h5>Message:</h5>
+        <textarea class="message" placeholder="Write your message here" rows="15" cols="100" th:field="*{message}"></textarea>
         <br/>
 
-        <button name="send-newsletter" type="submit" class="btn btn-primary btn-lg">Send newsletter</button>
-        <button name="save-newsletter" type="submit" class="btn btn-primary btn-lg">Save draft</button>
+        <button name="send-newsletter" type="submit" class="btn btn-danger">Send newsletter</button>
+        <button name="save-newsletter" type="submit" class="btn btn-danger">Save draft</button>
     </form>
 </div>
 </body>
