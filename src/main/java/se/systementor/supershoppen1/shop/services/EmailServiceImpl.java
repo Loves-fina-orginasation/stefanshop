@@ -17,8 +17,7 @@ public class EmailServiceImpl implements EmailService {
             String subject,
             String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("");
-        //TODO: set from - email
+        message.setFrom("info@systementor.se");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
