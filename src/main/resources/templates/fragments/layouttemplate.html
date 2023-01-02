@@ -189,9 +189,9 @@
                 <div class="newsletter">
                     <p>Sign Up for the <strong>NEWSLETTER</strong></p>
 
-                        <form th:action="@{/subscriber/save}" method="post" th:object="${Newsletter}">
-                            <input name ="addingsub" class="input" type="email" placeholder="Enter Your Email" required/>
-                            <button class="newsletter-btn" type="submit"><i class="fa fa-envelope"></i> Subscribe </button>
+                    <form th:action="@{/subscriber/save}" method="get|post" th:object="${subscriber}">
+                        <input name ="addingSub" class="input" type="email" placeholder="Enter Your Email" required/>
+                        <button class="newsletter-btn" type="submit"><i class="fa fa-envelope"></i> Subscribe </button>
                     </form>
                     <ul class="newsletter-follow">
                         <li>
