@@ -19,6 +19,7 @@ public class GlobalUsageController {
     public boolean newsLetterWindow()
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null) return false;
         Object ud = auth.getPrincipal();
         if(ud instanceof UserDetails)
         {
