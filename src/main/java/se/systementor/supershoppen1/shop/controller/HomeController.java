@@ -23,17 +23,17 @@ public class HomeController {
    @GetMapping(path="/")
     String empty(Model model)
     {
-        getHelloClient(model);
+        getKrisInfo(model);
         return "home";
 
     }
 
-    private void getHelloClient(Model model){
+    private void getKrisInfo(Model model){
 
         String url = "https://api.krisinformation.se/v3/features";
         RestTemplate restTemplate = new RestTemplate();
         Object[] result = restTemplate.getForObject(url, Object[].class);
-        model.addAttribute("test", Arrays.asList(result));
+        model.addAttribute("krisinformation", Arrays.asList(result));
     }
 
     @GetMapping(path="/test2")
