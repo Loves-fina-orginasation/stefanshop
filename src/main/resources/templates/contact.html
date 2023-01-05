@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layouttemplate :: layout (~{::body})}">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8"/>
+    <title>replace</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="newsletter-title">Contact us</h1>
+    <form th:action="@{/contact}" method="post" th:object="${contact}">
+        <h5>Name:</h5>
+        <input class="subject" type="text" placeholder="Write your name here" id="blog-id" /><br/>
+        <h5>Email:</h5>
+        <input class="subject" type="text" placeholder="Write your email here" id="blog-id" /><br/>
+        <h5>Subject:</h5>
+        <input class="subject" type="text" placeholder="Write your subject here" id="blog-id" /><br/>
+        <h5>Message:</h5>
+        <textarea class="message" placeholder="Write your message here" rows="15" cols="100"></textarea>
+        <br/>
+
+        <button name="send-newsletter" type="submit" class="btn btn-danger">Send</button>
+    </form>
+</div>
+</body>
+</html>
