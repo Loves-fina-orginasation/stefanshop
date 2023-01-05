@@ -142,6 +142,7 @@
 <!-- /HEADER -->
 <!-- NAVIGATION -->
 <nav id="navigation">
+<<<<<<< Updated upstream
   <!-- container -->
   <div class="container">
     <!-- responsive-nav -->
@@ -160,6 +161,25 @@
         <li sec:authorize="hasRole('ADMIN')">
           <a href="/subscriber/getAll">
             Subscribers</a></li>
+=======
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a href="/admin/products">
+                        Products</a></li>
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a href="/admin/categories">
+                        Categories</a></li>
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a href="/admin/newsletters">
+                        Newsletters</a></li>
+               <li sec:authorize="hasRole('ADMIN')">
+                    <a href="/subscriber/getAll">
+                        Subscribers</a></li>
 
       </ul>
       <!-- /NAV -->
@@ -274,7 +294,7 @@
             <h3 class="footer-title">Information</h3>
             <ul class="footer-links">
               <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><a href="/contact">Contact Us</a></li>
               <li><a href="#">Privacy Policy</a></li>
               <li><a href="#">Orders and Returns</a></li>
               <li><a href="#">Terms & Conditions</a></li>
