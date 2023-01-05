@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.systementor.supershoppen1.shop.model.Subscriber;
+import se.systementor.supershoppen1.shop.services.EmailServiceImpl;
 import se.systementor.supershoppen1.shop.services.SubscriberService;
 
 import java.util.List;
@@ -13,10 +14,13 @@ import java.util.List;
 @RequestMapping("/subscriber")
 public class SubscriberController {
     private final SubscriberService subscriberService;
+    private final EmailServiceImpl emailService;
 
     @Autowired
-    public SubscriberController(SubscriberService SubscriberService) {
+    public SubscriberController(SubscriberService SubscriberService,
+                                EmailServiceImpl emailService) {
         this.subscriberService = SubscriberService;
+        this.emailService = emailService;
     }
 
     @GetMapping(path = "/get/{id}")
@@ -36,6 +40,8 @@ public class SubscriberController {
         } else if (email.matches(emailRegex)) {
             subscriber.setEmail(email);
             subscriberService.save(subscriber);
+            //TODO: remove method, only used for test
+            emailService.sendSimpleEmail("lafayette.vonrueden@ethereal.email", "hej", "hej");
             model.addAttribute("checkEmail", "3");
             model.addAttribute("hideSubscription", true);
         } else {
