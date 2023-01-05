@@ -61,7 +61,7 @@ public class WebSecurityConfig  {
                     .logoutSuccessUrl("/login");
 
 
-        return http.build(); 
+        return http.csrf().disable().build();
     }
 
 

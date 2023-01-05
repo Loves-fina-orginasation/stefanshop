@@ -25,9 +25,9 @@ public class SubscriberController {
     }
 
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveEmail(@ModelAttribute("Newsletter") Subscriber subscriber, Model model,
-                            @RequestParam(name = "addingsub") String email) {
+    @RequestMapping(value = "/save", method = {RequestMethod.POST, RequestMethod.GET})
+    public String saveEmail(@ModelAttribute("subscriber") Subscriber subscriber, Model model,
+                            @RequestParam(name = "addingSub") String email) {
 
         String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         boolean emailExists = checkIfEmailExists(email);
@@ -41,7 +41,7 @@ public class SubscriberController {
         } else {
             model.addAttribute("checkEmail", "2");
         }
-        return "/home";
+        return "forward:/";
     }
 
     public boolean checkIfEmailExists(String email) {
