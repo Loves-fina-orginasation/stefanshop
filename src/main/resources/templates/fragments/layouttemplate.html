@@ -227,7 +227,7 @@
     </thead>
     <tbody>
     <tr th:each="kris : ${krisinformation}">
-      <td th:text="${kris.Headline}"></td>
+      <td><a th:href="@{/kris-information(id=${kris.Id})}" th:text="${kris.Headline}"></a></td>
       <td th:text="${kris.Preamble}"></td>
     </tr>
     </tbody>
