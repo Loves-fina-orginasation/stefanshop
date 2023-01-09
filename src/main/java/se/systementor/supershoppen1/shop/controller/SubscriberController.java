@@ -14,6 +14,7 @@ import java.util.List;
 public class SubscriberController {
     private final SubscriberService subscriberService;
 
+
     @Autowired
     public SubscriberController(SubscriberService SubscriberService) {
         this.subscriberService = SubscriberService;
