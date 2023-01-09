@@ -8,10 +8,10 @@ import se.systementor.supershoppen1.shop.model.SubscriberRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class SubscriberServiceTest {
 
@@ -33,6 +33,7 @@ class SubscriberServiceTest {
     public static void initSubscriber(){
         Subscriber firstSubscriber = new Subscriber();
         firstSubscriber.setEmail("test@test.com");
+        firstSubscriber.setId(1);
         listOfSubscribers.add(firstSubscriber);
     }
 
@@ -40,8 +41,10 @@ class SubscriberServiceTest {
     void getAll() {
 
         //ARRANGE
+        when(subscriberRepository.findAll()).thenReturn(listOfSubscribers);
 
         //ACT
+
 
         //ASSERT
     }
@@ -51,9 +54,17 @@ class SubscriberServiceTest {
 
         //ARRANGE
 
+        when(subscriberRepository.findById(1)).thenReturn(Optional.of(listOfSubscribers.get(0)));
+
         //ACT
 
+        Subscriber actualSubscriber = sut.getSubscriber(1);
+
         //ASSERT
+
+        assertEquals(1, actualSubscriber.getId());
+        assertEquals("test@test.com", actualSubscriber.getEmail());
+        verify(subscriberRepository,times(1)).findById(1);
     }
 
     @Test
