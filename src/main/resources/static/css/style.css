@@ -123,12 +123,19 @@ ul, ol {
   width: 100%;
 }
 
+.kris-title{
+  margin-top: 20px;
+}
 .newsletter-title{
   color: #D10024;
   text-align: left;
   margin-bottom: 10px;
 }
 
+.card-img-top{
+  margin-top: 10px;
+  margin-bottom: 15px;
+ }
 .subject {
   border: solid 1px #bbbbbb;
   text-align: left;
